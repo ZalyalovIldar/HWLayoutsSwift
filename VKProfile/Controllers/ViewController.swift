@@ -36,11 +36,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         user = generateUser()
         
+        setContentSize(with: infoScrollView, elements: infoButtons, indention: 8)
+        setContentSize(with: photoScrollView, elements: photos, indention: 8)
         createStyles()
         setLabels()
+    }
+    
+    private func setContentSize(with scrollView: UIScrollView, elements: [UIView], indention: CGFloat) {
+        let heightContent = scrollView.frame.height
+        var widthContent: CGFloat = 0
+        for element in elements {
+            widthContent += element.frame.width + indention
+        }
+        scrollView.contentSize = CGSize(width: widthContent, height: heightContent)
     }
     
     private func createBorders(to view: UIView, on position: BorderPosition) {
