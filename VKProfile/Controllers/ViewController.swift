@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet var infoButtons: [UIButton]!
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet var photos: [UIImageView]!
+    @IBOutlet weak var buttonsView: UIView!
     
     var count = 0
     var user: User!
@@ -39,10 +40,13 @@ class ViewController: UIViewController {
         
         user = generateUser()
         
+        setLabels()
+    }
+    
+    override func viewDidLayoutSubviews() {
         setContentSize(with: infoScrollView, elements: infoButtons, indention: 8)
         setContentSize(with: photoScrollView, elements: photos, indention: 8)
         createStyles()
-        setLabels()
     }
     
     private func setContentSize(with scrollView: UIScrollView, elements: [UIView], indention: CGFloat) {
@@ -57,10 +61,15 @@ class ViewController: UIViewController {
     private func createBorders(to view: UIView, on position: BorderPosition) {
         let borderWidth = CGFloat(2.0)
         let marginX = CGFloat(10)
-        let borderLength = CGFloat(UIScreen.main.bounds.width - marginX * 2)
+        var borderLength = CGFloat(UIScreen.main.bounds.width - marginX * 2)
         let borderColor = UIColor(rgb: 0xdbd6d6).cgColor
         let borderMargin: CGFloat = 1.0
         let noneMargin:CGFloat = 0
+        
+        if (view is UIScrollView) {
+            let scrollView = view as! UIScrollView
+            borderLength = scrollView.contentSize.width - marginX * 2
+        }
         
         switch position {
         case .top:
@@ -102,9 +111,9 @@ class ViewController: UIViewController {
     private func createStyles() {
         createBorders(to: infoScrollView, on: .bottom)
         createBorders(to: infoScrollView, on: .top)
-        createBorders(to: photoScrollView, on: .bottom)
+        createBorders(to: buttonsView, on: .top)
+        createBorders(to: menuButtons[2], on: .right)
         createBorders(to: menuButtons[0], on: .right)
-        createBorders(to: menuButtons[1], on: .right)
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x3180d6)
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
