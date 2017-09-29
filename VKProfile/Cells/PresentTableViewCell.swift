@@ -12,7 +12,6 @@ class PresentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var presentsCountLabel: UILabel!
     @IBOutlet var presentsImageView: [UIImageView]!
-    @IBOutlet var distances: [NSLayoutConstraint]!
     
     var accessoryButton: UIButton!
     
@@ -20,16 +19,6 @@ class PresentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.accessoryType = .disclosureIndicator
         accessoryButton = self.subviews.flatMap { $0 as? UIButton }.first
-        
-        //configureDistance()
-    }
-    
-    private func configureDistance() {
-        let screenWidth = UIScreen.main.bounds.width
-        let newDistance = (screenWidth - 8 - 8 - 4 * (presentsImageView[0].frame.width) - accessoryButton.frame.width) / 3
-        for distance in distances {
-            distance.constant = newDistance
-        }
     }
     
     override func layoutSubviews() {

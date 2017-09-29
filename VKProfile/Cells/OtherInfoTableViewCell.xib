@@ -33,10 +33,11 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="kSc-g2-bmo" secondAttribute="bottom" constant="11" id="2yi-b8-Gp9"/>
                     <constraint firstItem="9ww-87-ajf" firstAttribute="leading" secondItem="kSc-g2-bmo" secondAttribute="trailing" constant="8" id="PxD-PY-VBB"/>
                     <constraint firstItem="9ww-87-ajf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ejA-jG-3mk"/>
-                    <constraint firstItem="kSc-g2-bmo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fKj-Bj-VPv"/>
                     <constraint firstItem="kSc-g2-bmo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="jMg-am-usF"/>
+                    <constraint firstItem="kSc-g2-bmo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11.5" id="uco-Sh-5pO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

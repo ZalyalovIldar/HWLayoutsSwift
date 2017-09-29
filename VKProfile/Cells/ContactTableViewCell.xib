@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +22,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QrL-rA-RiR">
                         <rect key="frame" x="8" y="6" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="QrL-rA-RiR" secondAttribute="height" multiplier="1:1" id="eIE-Ai-5Pt"/>
+                            <constraint firstAttribute="width" constant="30" id="I1l-g5-lQz"/>
+                            <constraint firstAttribute="height" priority="999" constant="30" id="M5D-7D-KPX"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzx-S4-j16">
@@ -34,11 +34,11 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yzx-S4-j16" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4oi-Sm-Beb"/>
+                    <constraint firstItem="yzx-S4-j16" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="L1h-is-obz"/>
                     <constraint firstItem="QrL-rA-RiR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="S0v-27-8cx"/>
-                    <constraint firstItem="QrL-rA-RiR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YGS-fB-zDC"/>
+                    <constraint firstItem="QrL-rA-RiR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="VGR-oK-qUo"/>
                     <constraint firstItem="yzx-S4-j16" firstAttribute="leading" secondItem="QrL-rA-RiR" secondAttribute="trailing" constant="8" id="am4-Nf-Jio"/>
-                    <constraint firstItem="QrL-rA-RiR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="qlI-kG-YCt"/>
+                    <constraint firstAttribute="bottom" secondItem="QrL-rA-RiR" secondAttribute="bottom" constant="7.5" id="siQ-vP-dGc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

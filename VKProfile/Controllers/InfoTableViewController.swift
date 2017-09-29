@@ -8,18 +8,6 @@
 
 import UIKit
 
-let professionHeight: CGFloat = 92
-let instituteHeight: CGFloat = 166
-let schoolHeight: CGFloat = 156
-let presentHeight: CGFloat = 120
-let otherInfoHeight: CGFloat = 44
-let contactHeight: CGFloat = 44
-let defaultHeight: CGFloat = 68
-
-let contacts = "контакты"
-let career = "карьера"
-let education = "образование"
-
 class InfoTableViewController: UITableViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -28,6 +16,18 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var yearTextLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    
+    let professionHeight: CGFloat = 92
+    let instituteHeight: CGFloat = 166
+    let schoolHeight: CGFloat = 156
+    let presentHeight: CGFloat = 120
+    let otherInfoHeight: CGFloat = 44
+    let contactHeight: CGFloat = 44
+    let defaultHeight: CGFloat = 68
+    
+    let contacts = "контакты"
+    let career = "карьера"
+    let education = "образование"
     
     let cellsInfo = [
         CellInfo(fileName: "StatusTableViewCell", identifier: "statusCell"),
@@ -45,6 +45,7 @@ class InfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         prepareNavBar()
         createPullToRefresh()
@@ -189,7 +190,7 @@ class InfoTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let contactSection = 2
         let professionSection = 3
         let educationSection = 4
