@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet var photos: [UIImageView]!
     @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet var distanceInfoButtonsConstraints: [NSLayoutConstraint]!
+    @IBOutlet var distancePhotoConstrains: [NSLayoutConstraint]!
     
     var count = 0
     var user: User!
@@ -39,8 +41,31 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         user = generateUser()
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         setLabels()
+    }
+    
+    @objc private func rotated() {
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            changeDistance(in: infoScrollView, with: infoButtons, constraints: distanceInfoButtonsConstraints)
+            changeDistance(in: photoScrollView, with: photos, constraints: distancePhotoConstrains)
+        }
+        
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            let defaultDistance: CGFloat = 8
+            distanceInfoButtonsConstraints.forEach { $0.constant = defaultDistance }
+            distancePhotoConstrains.forEach { $0.constant = defaultDistance }
+        }
+    }
+    
+    private func changeDistance(in scrollView: UIScrollView, with elements: [UIView], constraints: [NSLayoutConstraint]) {
+        let screenWidth = UIScreen.main.bounds.width
+        let indentation: CGFloat = 8
+        var elementsWidth: CGFloat = 0
+        elements.forEach { elementsWidth += $0.frame.width }
+        let newDistance = (screenWidth - indentation * 2 - elementsWidth) / CGFloat(elements.count)
+        constraints.forEach { $0.constant = newDistance }
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,8 +92,7 @@ class ViewController: UIViewController {
         let noneMargin:CGFloat = 0
         
         if (view is UIScrollView) {
-            let scrollView = view as! UIScrollView
-            borderLength = scrollView.contentSize.width - marginX * 2
+            borderLength = UIScreen.main.bounds.height - marginX * 2
         }
         
         switch position {
@@ -112,7 +136,7 @@ class ViewController: UIViewController {
         createBorders(to: infoScrollView, on: .bottom)
         createBorders(to: infoScrollView, on: .top)
         createBorders(to: buttonsView, on: .top)
-        createBorders(to: menuButtons[2], on: .right)
+        createBorders(to: menuButtons[1], on: .right)
         createBorders(to: menuButtons[0], on: .right)
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x3180d6)
@@ -149,14 +173,14 @@ class ViewController: UIViewController {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): paragraph]
-        setTitle(with: infoButtons[0], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
-        setTitle(with: infoButtons[1], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
-        setTitle(with: infoButtons[2], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
-        setTitle(with: infoButtons[3], count: user.photos.count, word: photo, attributes: attributes)
-        setTitle(with: infoButtons[4], count: user.videos, word: video, attributes: attributes)
-        setTitle(with: infoButtons[5], count: user.audios, word: audio, attributes: attributes)
-        setTitle(with: infoButtons[6], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
-        setTitle(with: infoButtons[7], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
+        setTitle(with: infoButtons[7], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
+        setTitle(with: infoButtons[0], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
+        setTitle(with: infoButtons[1], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
+        setTitle(with: infoButtons[2], count: user.photos.count, word: photo, attributes: attributes)
+        setTitle(with: infoButtons[3], count: user.videos, word: video, attributes: attributes)
+        setTitle(with: infoButtons[4], count: user.audios, word: audio, attributes: attributes)
+        setTitle(with: infoButtons[5], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
+        setTitle(with: infoButtons[6], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
         
         let photoCount = user.photos.count
         let photoTitle = EndingWord.getCorrectEnding(with: photoCount, and: DeclinationWordDictionary.photograph)
