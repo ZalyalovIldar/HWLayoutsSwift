@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,44 +20,66 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QS1-Ne-H99">
-                        <rect key="frame" x="0.0" y="8" width="320" height="103"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AeI-PT-tP1">
-                                <rect key="frame" x="8" y="32" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sye-xy-Jsk">
-                                <rect key="frame" x="86" y="33" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAr-oj-aj3">
-                                <rect key="frame" x="164" y="32" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkk-hK-6ej">
-                                <rect key="frame" x="242" y="33" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4 подарка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vA3-by-ZyW">
-                                <rect key="frame" x="8" y="0.0" width="148" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                    </scrollView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cw7-yH-mTd">
+                        <rect key="frame" x="242.5" y="32" width="69.5" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="cw7-yH-mTd" secondAttribute="height" multiplier="1:1" id="slg-wK-pr3"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TDT-ot-9v3">
+                        <rect key="frame" x="86.5" y="32" width="69.5" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="TDT-ot-9v3" secondAttribute="height" multiplier="1:1" id="5gv-Dc-Dtx"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mSB-yy-Jze">
+                        <rect key="frame" x="8" y="32" width="70.5" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="mSB-yy-Jze" secondAttribute="height" multiplier="1:1" id="GzR-H9-2W4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 подарка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-Zd-9jI">
+                        <rect key="frame" x="8" y="8" width="64.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-1z-gXb">
+                        <rect key="frame" x="164" y="32" width="70.5" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="7Ih-1z-gXb" secondAttribute="height" multiplier="1:1" id="F5I-LG-5J0"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="mSB-yy-Jze" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="7.25" id="2BW-kQ-Ppv"/>
+                    <constraint firstItem="mSB-yy-Jze" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="57R-Qt-0I1"/>
+                    <constraint firstItem="nvi-Zd-9jI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ED1-MZ-HQE"/>
+                    <constraint firstItem="mSB-yy-Jze" firstAttribute="top" secondItem="nvi-Zd-9jI" secondAttribute="bottom" constant="8" id="GRS-5u-3sp"/>
+                    <constraint firstAttribute="trailing" secondItem="cw7-yH-mTd" secondAttribute="trailing" constant="8" id="TDi-MI-uQ1"/>
+                    <constraint firstItem="cw7-yH-mTd" firstAttribute="bottom" secondItem="7Ih-1z-gXb" secondAttribute="bottom" id="a7d-BY-nwt"/>
+                    <constraint firstItem="cw7-yH-mTd" firstAttribute="leading" secondItem="7Ih-1z-gXb" secondAttribute="trailing" constant="8" id="cvd-Bu-Ts1"/>
+                    <constraint firstItem="7Ih-1z-gXb" firstAttribute="leading" secondItem="TDT-ot-9v3" secondAttribute="trailing" constant="8" id="dsC-dK-56r"/>
+                    <constraint firstAttribute="bottom" secondItem="mSB-yy-Jze" secondAttribute="bottom" constant="17.5" id="eaJ-X5-jDj"/>
+                    <constraint firstItem="7Ih-1z-gXb" firstAttribute="top" secondItem="TDT-ot-9v3" secondAttribute="top" id="gXp-Mc-gaJ"/>
+                    <constraint firstItem="nvi-Zd-9jI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="mma-xK-zof"/>
+                    <constraint firstItem="7Ih-1z-gXb" firstAttribute="bottom" secondItem="TDT-ot-9v3" secondAttribute="bottom" id="oaX-wu-cd1"/>
+                    <constraint firstItem="cw7-yH-mTd" firstAttribute="top" secondItem="7Ih-1z-gXb" secondAttribute="top" id="pr2-3j-omJ"/>
+                    <constraint firstItem="TDT-ot-9v3" firstAttribute="leading" secondItem="mSB-yy-Jze" secondAttribute="trailing" constant="8" id="uAN-1c-Jb7"/>
+                    <constraint firstItem="TDT-ot-9v3" firstAttribute="top" secondItem="mSB-yy-Jze" secondAttribute="top" id="wsE-bR-1di"/>
+                    <constraint firstItem="TDT-ot-9v3" firstAttribute="bottom" secondItem="mSB-yy-Jze" secondAttribute="bottom" id="yYV-7G-zoe"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="presentsCountLabel" destination="vA3-by-ZyW" id="sYQ-hJ-v3n"/>
-                <outletCollection property="presentsImageView" destination="AeI-PT-tP1" collectionClass="NSMutableArray" id="pKf-4B-Hdx"/>
-                <outletCollection property="presentsImageView" destination="Sye-xy-Jsk" collectionClass="NSMutableArray" id="3KT-Bg-XLK"/>
-                <outletCollection property="presentsImageView" destination="NAr-oj-aj3" collectionClass="NSMutableArray" id="3rM-ob-0aQ"/>
-                <outletCollection property="presentsImageView" destination="qkk-hK-6ej" collectionClass="NSMutableArray" id="Cl9-l7-f1w"/>
+                <outlet property="presentsCountLabel" destination="nvi-Zd-9jI" id="LAZ-qf-oQn"/>
+                <outletCollection property="presentsImageView" destination="mSB-yy-Jze" collectionClass="NSMutableArray" id="Csh-Oj-81S"/>
+                <outletCollection property="presentsImageView" destination="TDT-ot-9v3" collectionClass="NSMutableArray" id="png-BM-czQ"/>
+                <outletCollection property="presentsImageView" destination="7Ih-1z-gXb" collectionClass="NSMutableArray" id="Q5g-eH-TMY"/>
+                <outletCollection property="presentsImageView" destination="cw7-yH-mTd" collectionClass="NSMutableArray" id="0x6-sY-Qto"/>
+                <outletCollection property="distances" destination="uAN-1c-Jb7" collectionClass="NSMutableArray" id="D4o-Kf-mhJ"/>
+                <outletCollection property="distances" destination="dsC-dK-56r" collectionClass="NSMutableArray" id="5t7-Pj-mdn"/>
+                <outletCollection property="distances" destination="cvd-Bu-Ts1" collectionClass="NSMutableArray" id="XRV-Ho-ODb"/>
             </connections>
             <point key="canvasLocation" x="25" y="156"/>
         </tableViewCell>
