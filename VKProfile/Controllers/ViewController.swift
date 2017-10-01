@@ -69,9 +69,11 @@ class ViewController: UIViewController {
     
     private func createButtons() {
         let buttonCounts = 8
+        let fontName = "Arial"
+        let textSize:CGFloat = 15
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
-        guard let font = UIFont(name: "Arial", size: 15) else { return }
+        guard let font = UIFont(name: fontName, size: textSize) else { return }
         let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): paragraph, NSAttributedStringKey.font: font]
         
         for _ in 0 ..< buttonCounts {
@@ -152,9 +154,8 @@ class ViewController: UIViewController {
     private func setContentSize(with scrollView: UIScrollView, elements: [UIView], indention: CGFloat) {
         let heightContent = scrollView.frame.height
         var widthContent: CGFloat = 0
-        for element in elements {
-            widthContent += element.frame.width + indention
-        }
+        
+        elements.forEach { widthContent += $0.frame.width + indention }
         scrollView.contentSize = CGSize(width: widthContent, height: heightContent)
     }
     
