@@ -26,15 +26,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet var infoButtons: [UIButton]!
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet var photos: [UIImageView]!
     @IBOutlet weak var buttonsView: UIView!
-    @IBOutlet var distanceInfoButtonsConstraints: [NSLayoutConstraint]!
     @IBOutlet var distancePhotoConstrains: [NSLayoutConstraint]!
     
     var count = 0
     var user: User!
+    var buttons = [UIButton]()
+    var indentionButtonConstraints = [NSLayoutConstraint]()
+    let photo = "фото"
+    let audio = "аудио"
+    let video = "видео"
+    let seperator = ","
+    let infoIdentifier = "infoSegue"
+    let followersIdentifier = "followersSegue"
+    let defaultIndention: CGFloat = 8
     
     
     override func viewDidLoad() {
@@ -44,19 +51,57 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         setLabels()
+        createButtons()
     }
     
     @objc private func rotated() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            changeDistance(in: infoScrollView, with: infoButtons, constraints: distanceInfoButtonsConstraints)
+            changeDistance(in: infoScrollView, with: buttons, constraints: indentionButtonConstraints)
             changeDistance(in: photoScrollView, with: photos, constraints: distancePhotoConstrains)
         }
         
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            let defaultDistance: CGFloat = 8
-            distanceInfoButtonsConstraints.forEach { $0.constant = defaultDistance }
-            distancePhotoConstrains.forEach { $0.constant = defaultDistance }
+            indentionButtonConstraints.forEach { $0.constant = defaultIndention }
+            distancePhotoConstrains.forEach { $0.constant = defaultIndention }
         }
+    }
+    
+    private func createButtons() {
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        guard let font = UIFont(name: "Arial", size: 15) else { return }
+        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): paragraph, NSAttributedStringKey.font: font]
+        
+        for _ in 0 ..< 8 {
+            let button = UIButton()
+            button.titleLabel?.lineBreakMode = .byCharWrapping
+            button.translatesAutoresizingMaskIntoConstraints = false
+            buttons.append(button)
+        }
+
+        for (i, button) in buttons.enumerated() {
+            infoScrollView.addSubview(button)
+
+            guard let superview = button.superview else { return }
+            let leftView = (i == 0) ? superview : buttons[i - 1]
+            let yCenterConstraint = NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: superview, attribute: .centerY, multiplier: 1, constant: 0)
+            let leadingConstraint = NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: 8)
+            indentionButtonConstraints.append(leadingConstraint)
+
+            NSLayoutConstraint.activate([yCenterConstraint, leadingConstraint])
+        }
+        
+        setTitle(with: buttons[0], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
+        setTitle(with: buttons[1], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
+        setTitle(with: buttons[2], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
+        setTitle(with: buttons[3], count: user.photos.count, word: photo, attributes: attributes)
+        setTitle(with: buttons[4], count: user.videos, word: video, attributes: attributes)
+        setTitle(with: buttons[5], count: user.audios, word: audio, attributes: attributes)
+        setTitle(with: buttons[6], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
+        setTitle(with: buttons[7], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
+        
+        buttons[1].addTarget(self, action: #selector(onFollowersClick), for: .touchUpInside)
+        
     }
     
     private func changeDistance(in scrollView: UIScrollView, with elements: [UIView], constraints: [NSLayoutConstraint]) {
@@ -69,8 +114,8 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        setContentSize(with: infoScrollView, elements: infoButtons, indention: 8)
-        setContentSize(with: photoScrollView, elements: photos, indention: 8)
+        setContentSize(with: infoScrollView, elements: buttons, indention: defaultIndention)
+        setContentSize(with: photoScrollView, elements: photos, indention: defaultIndention)
         createStyles()
     }
     
@@ -157,11 +202,6 @@ class ViewController: UIViewController {
     }
     
     private func setLabels() {
-        let photo = "фото"
-        let audio = "аудио"
-        let video = "видео"
-        let seperator = ","
-        
         self.title = user.name
         nameLabel.text = user.name + " " + user.surname
         onlineStatusLabel.text = user.onlineStatus.rawValue
@@ -169,18 +209,6 @@ class ViewController: UIViewController {
         ageLabel.text = String(user.age)
         yearsLabel.text = EndingWord.getCorrectEnding(with: user.age, and: DeclinationWordDictionary.age) + seperator
         cityLabel.text = user.city
-        
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .center
-        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): paragraph]
-        setTitle(with: infoButtons[7], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
-        setTitle(with: infoButtons[0], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
-        setTitle(with: infoButtons[1], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
-        setTitle(with: infoButtons[2], count: user.photos.count, word: photo, attributes: attributes)
-        setTitle(with: infoButtons[3], count: user.videos, word: video, attributes: attributes)
-        setTitle(with: infoButtons[4], count: user.audios, word: audio, attributes: attributes)
-        setTitle(with: infoButtons[5], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
-        setTitle(with: infoButtons[6], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
         
         let photoCount = user.photos.count
         let photoTitle = EndingWord.getCorrectEnding(with: photoCount, and: DeclinationWordDictionary.photograph)
@@ -211,9 +239,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc private func onFollowersClick(sender: UIButton!) {
+        performSegue(withIdentifier: followersIdentifier, sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let infoIdentifier = "infoSegue"
-        let followersIdentifier = "followersSegue"
         
         if (segue.identifier == followersIdentifier) {
             let followerTVC = segue.destination as! FollowersTableViewController
