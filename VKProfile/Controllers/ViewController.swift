@@ -27,14 +27,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var photosButton: UIButton!
-    @IBOutlet var photos: [UIImageView]!
     @IBOutlet weak var buttonsView: UIView!
-    @IBOutlet var distancePhotoConstrains: [NSLayoutConstraint]!
     
     var count = 0
     var user: User!
-    var buttons = [UIButton]()
+    var infoButtons = [UIButton]()
     var indentionButtonConstraints = [NSLayoutConstraint]()
+    var imageViews = [UIImageView]()
+    var indentionImageViewConstraints = [NSLayoutConstraint]()
     let photo = "фото"
     let audio = "аудио"
     let video = "видео"
@@ -52,38 +52,40 @@ class ViewController: UIViewController {
         
         setLabels()
         createButtons()
+        createImageViews()
     }
     
     @objc private func rotated() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            changeDistance(in: infoScrollView, with: buttons, constraints: indentionButtonConstraints)
-            changeDistance(in: photoScrollView, with: photos, constraints: distancePhotoConstrains)
+            changeDistance(in: infoScrollView, with: infoButtons, constraints: indentionButtonConstraints)
+            changeDistance(in: photoScrollView, with: imageViews, constraints: indentionImageViewConstraints)
         }
         
         if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
             indentionButtonConstraints.forEach { $0.constant = defaultIndention }
-            distancePhotoConstrains.forEach { $0.constant = defaultIndention }
+            indentionImageViewConstraints.forEach { $0.constant = defaultIndention }
         }
     }
     
     private func createButtons() {
+        let buttonCounts = 8
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         guard let font = UIFont(name: "Arial", size: 15) else { return }
         let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.paragraphStyle.rawValue): paragraph, NSAttributedStringKey.font: font]
         
-        for _ in 0 ..< 8 {
+        for _ in 0 ..< buttonCounts {
             let button = UIButton()
             button.titleLabel?.lineBreakMode = .byCharWrapping
             button.translatesAutoresizingMaskIntoConstraints = false
-            buttons.append(button)
+            infoButtons.append(button)
         }
 
-        for (i, button) in buttons.enumerated() {
+        for (i, button) in infoButtons.enumerated() {
             infoScrollView.addSubview(button)
 
             guard let superview = button.superview else { return }
-            let leftView = (i == 0) ? superview : buttons[i - 1]
+            let leftView = (i == 0) ? superview : infoButtons[i - 1]
             let yCenterConstraint = NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: superview, attribute: .centerY, multiplier: 1, constant: 0)
             let leadingConstraint = NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: 8)
             indentionButtonConstraints.append(leadingConstraint)
@@ -91,17 +93,45 @@ class ViewController: UIViewController {
             NSLayoutConstraint.activate([yCenterConstraint, leadingConstraint])
         }
         
-        setTitle(with: buttons[0], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
-        setTitle(with: buttons[1], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
-        setTitle(with: buttons[2], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
-        setTitle(with: buttons[3], count: user.photos.count, word: photo, attributes: attributes)
-        setTitle(with: buttons[4], count: user.videos, word: video, attributes: attributes)
-        setTitle(with: buttons[5], count: user.audios, word: audio, attributes: attributes)
-        setTitle(with: buttons[6], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
-        setTitle(with: buttons[7], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
+        setTitle(with: infoButtons[0], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
+        setTitle(with: infoButtons[1], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
+        setTitle(with: infoButtons[2], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
+        setTitle(with: infoButtons[3], count: user.photos.count, word: photo, attributes: attributes)
+        setTitle(with: infoButtons[4], count: user.videos, word: video, attributes: attributes)
+        setTitle(with: infoButtons[5], count: user.audios, word: audio, attributes: attributes)
+        setTitle(with: infoButtons[6], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
+        setTitle(with: infoButtons[7], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
         
-        buttons[1].addTarget(self, action: #selector(onFollowersClick), for: .touchUpInside)
+        infoButtons[1].addTarget(self, action: #selector(onFollowersClick), for: .touchUpInside)
         
+    }
+    
+    private func createImageViews() {
+        let imageWidth: CGFloat = 129
+        let imageHeight: CGFloat = 97
+        
+        for _ in 0 ..< user.photos.count {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageViews.append(imageView)
+        }
+        
+        for (i, imageView) in imageViews.enumerated() {
+            photoScrollView.addSubview(imageView)
+            
+            guard let superview = imageView.superview else { return }
+            let leftView = (i == 0) ? superview : imageViews[i - 1]
+            
+            let yCenterConstraint = NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: superview, attribute: .centerY, multiplier: 1, constant: 0)
+            let leadingConstraint = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: defaultIndention)
+            indentionImageViewConstraints.append(leadingConstraint)
+            let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: imageWidth)
+            let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: imageHeight)
+            
+            NSLayoutConstraint.activate([yCenterConstraint, leadingConstraint, widthConstraint, heightConstraint])
+            
+            imageView.image = user.photos[i]
+        }
     }
     
     private func changeDistance(in scrollView: UIScrollView, with elements: [UIView], constraints: [NSLayoutConstraint]) {
@@ -114,8 +144,8 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        setContentSize(with: infoScrollView, elements: buttons, indention: defaultIndention)
-        setContentSize(with: photoScrollView, elements: photos, indention: defaultIndention)
+        setContentSize(with: infoScrollView, elements: infoButtons, indention: defaultIndention)
+        setContentSize(with: photoScrollView, elements: imageViews, indention: defaultIndention)
         createStyles()
     }
     
@@ -214,7 +244,6 @@ class ViewController: UIViewController {
         let photoTitle = EndingWord.getCorrectEnding(with: photoCount, and: DeclinationWordDictionary.photograph)
         photosButton.setTitle("\(photoCount) " + photoTitle, for: .normal)
         
-        photos.enumerated().forEach{ $0.element.image = user.photos[$0.offset] }
         avatarImage.image = user.profileImage
     }
     
