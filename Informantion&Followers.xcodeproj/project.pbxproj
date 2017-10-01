@@ -46,6 +46,7 @@
 		C7455C8D1F77F01F00589403 /* PresentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7455C8B1F77F01F00589403 /* PresentsTableViewCell.xib */; };
 		C7455C901F77F03100589403 /* FilesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7455C8E1F77F03100589403 /* FilesTableViewCell.swift */; };
 		C7455C911F77F03100589403 /* FilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7455C8F1F77F03100589403 /* FilesTableViewCell.xib */; };
+		C77883891F80F3E70077052F /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77883881F80F3E70077052F /* ImageCollectionViewCell.swift */; };
 		C7F7398E1F75A167003CEABF /* OwnInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F7398D1F75A167003CEABF /* OwnInfoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		C7455C8B1F77F01F00589403 /* PresentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresentsTableViewCell.xib; sourceTree = "<group>"; };
 		C7455C8E1F77F03100589403 /* FilesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTableViewCell.swift; sourceTree = "<group>"; };
 		C7455C8F1F77F03100589403 /* FilesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilesTableViewCell.xib; sourceTree = "<group>"; };
+		C77883881F80F3E70077052F /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7F7398D1F75A167003CEABF /* OwnInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnInfoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,8 +168,9 @@
 				C72F02F41F798FF2004ABB95 /* Models */,
 				C72F02F31F798FD1004ABB95 /* ViewControllers */,
 				23B28C301F750D78001F0A1D /* AppDelegate.swift */,
-				C72F02F21F798EA9004ABB95 /* CustomCells */,
 				23B28C341F750D78001F0A1D /* Main.storyboard */,
+				C77883881F80F3E70077052F /* ImageCollectionViewCell.swift */,
+				C72F02F21F798EA9004ABB95 /* CustomCells */,
 				23B28C601F753813001F0A1D /* UserInfo.swift */,
 				23B28C371F750D79001F0A1D /* Assets.xcassets */,
 				23B28C391F750D79001F0A1D /* LaunchScreen.storyboard */,
@@ -409,6 +412,7 @@
 				C72F02FE1F79913D004ABB95 /* BasicInfo.swift in Sources */,
 				C72E70031F76EB1F00720507 /* StatusTableViewCell.swift in Sources */,
 				C7455C901F77F03100589403 /* FilesTableViewCell.swift in Sources */,
+				C77883891F80F3E70077052F /* ImageCollectionViewCell.swift in Sources */,
 				23B28C631F753BF5001F0A1D /* User.swift in Sources */,
 				C72F03001F799158004ABB95 /* InfoViewModelBasicInfoItem.swift in Sources */,
 				C72F03101F79920A004ABB95 /* InfoViewModelFilesItem.swift in Sources */,

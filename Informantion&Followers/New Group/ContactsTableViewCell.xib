@@ -18,18 +18,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxI-Bj-i6u">
-                        <rect key="frame" x="52" y="9" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxI-Bj-i6u">
+                        <rect key="frame" x="60" y="9" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E03-dn-upf">
-                        <rect key="frame" x="8" y="9" width="44" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E03-dn-upf">
+                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="gu2-hi-1xK"/>
+                            <constraint firstAttribute="height" constant="40" id="s3S-3u-ads"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="E03-dn-upf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WQC-40-Oaf"/>
+                    <constraint firstAttribute="bottom" secondItem="KxI-Bj-i6u" secondAttribute="bottom" constant="9.5" id="fkv-Kc-ysp"/>
+                    <constraint firstItem="KxI-Bj-i6u" firstAttribute="leading" secondItem="E03-dn-upf" secondAttribute="trailing" constant="20" id="j9M-fs-75S"/>
+                    <constraint firstItem="E03-dn-upf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rGz-KV-Jwd"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

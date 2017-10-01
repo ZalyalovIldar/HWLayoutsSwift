@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewViewController: UIViewController {
+class NewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameNavigationItem: UINavigationItem!
@@ -16,18 +16,18 @@ class NewViewController: UIViewController {
     @IBOutlet weak var surnameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var infoScrollView: UIScrollView!
     @IBOutlet weak var numberOfFriendButton: UIButton!
     @IBOutlet weak var numberOfFollowersButton: UIButton!
     @IBOutlet weak var numberOfGroupsButton: UIButton!
     @IBOutlet weak var numberOfPhotoButton: UIButton!
-    @IBOutlet weak var photoesScrollView: UIScrollView!
     @IBOutlet weak var addEntryButton: UIButton!
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var addPlaceButton: UIButton!
+    @IBOutlet weak var infoScrollView: UIScrollView!
     
     var user: User!
     let years = " years"
+    let scrollWidth: CGFloat = 1000
     let borderWidth: CGFloat = 1
     let borderColour = UIColor.init(red:222/255.0, green:225/255.0, blue:227/255.0, alpha: 1.0).cgColor
     let buttonWidth = 35
@@ -35,7 +35,8 @@ class NewViewController: UIViewController {
     let followersSegueIdentifier = "followersIdentifier"
     let ownInfoSegueIdentifier = "ownInfoIdentifier"
     let navigationBarColor = UIColor.init(red: 89/255.0, green: 125/255.0, blue: 163/255.0, alpha: 1.0)
-    
+    var imagesArray = [UIImage(named: "fcrk-1"),UIImage(named: "fcrk-2"),UIImage(named: "fcrk-3"), UIImage(named: "fcrk-1")]
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         changeBackgroundNavagation()
@@ -43,11 +44,22 @@ class NewViewController: UIViewController {
         setInfo(for: user)
         setNavigationBarColorAndFont()
         roundImage(for: avatarImageView)
-        changeBorder(for: infoScrollView)
-        changeBorder(for: photoesScrollView)
         changeBorder(for: addPhotoButton)
         changeBorder(for: addEntryButton)
         changeBorder(for: addPlaceButton)
+        infoScrollView.contentSize = CGSize(width: scrollWidth, height: infoScrollView.frame.size.height)
+        changeBorder(for: infoScrollView)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imagesArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as! ImageCollectionViewCell
+        
+        cell.photoImageView.image = imagesArray[indexPath.row]
+        return cell
     }
     
     func changeBackgroundNavagation() {
@@ -104,5 +116,6 @@ class NewViewController: UIViewController {
             ownInfoVC.cityUser = user.city
         }
     }
+    
 
 }
