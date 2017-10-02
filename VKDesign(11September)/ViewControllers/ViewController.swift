@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var photoScroll: UIScrollView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var surnameLabel: UILabel!
@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var audioCount: UIButton!
     @IBOutlet weak var documentsCount: UIButton!
     @IBOutlet weak var giftsCount: UIButton!
+    @IBOutlet weak var newsTableView: UITableView!
     
     let navigationBarColor = UIColor.init(red: 89/255.0, green: 125/255.0, blue: 163/255.0, alpha: 1.0)
     let borderColor = UIColor.init(red: 184/255.0, green: 184/255.0, blue:184/255.0, alpha: 1.0).cgColor
@@ -56,7 +57,6 @@ class ViewController: UIViewController {
         randomSurname()
         randomAge()
         randomLocation()
-        //imageCorners(with: avatar)
         topAboutScrollBorder()
         bottomAboutScrollBorder()
         bottomPhotoScrollBorder()
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
     
     func setNavigationBarColorAndFont(){
         self.navigationController?.navigationBar.barTintColor = navigationBarColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
 
@@ -116,35 +116,35 @@ class ViewController: UIViewController {
 
         
         let friends = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(friendsConst)",
-                                                         attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle])
+                                                         attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         friendsCount.setAttributedTitle(friends, for: .normal)
         
         let followers = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(followersConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle ])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle ])
         followersCount.setAttributedTitle(followers, for: .normal)
         
         let groups = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(groupsConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         groupsCount.setAttributedTitle(groups, for: .normal)
         
         let photos = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(photosConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         photosCount.setAttributedTitle(photos, for: .normal)
         
         let videos = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(videosConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         videoCount.setAttributedTitle(videos, for: .normal)
         
         let audios = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(audiosConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         audioCount.setAttributedTitle(audios, for: .normal)
         
         let gifts = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(giftsConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         giftsCount.setAttributedTitle(gifts, for: .normal)
         
         let docs = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(docsConst)",
-            attributes: [NSForegroundColorAttributeName : color, NSParagraphStyleAttributeName:paragraphStyle ])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle ])
         documentsCount.setAttributedTitle(docs, for: .normal)
 
     }
@@ -199,6 +199,19 @@ class ViewController: UIViewController {
         noteButton.layer.addSublayer(border)
         
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        return cell
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == infoSequeIdentifier {

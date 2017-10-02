@@ -14,6 +14,9 @@
 		9523E8D61F66D516000DC924 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9523E8D41F66D516000DC924 /* Main.storyboard */; };
 		9523E8D81F66D516000DC924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9523E8D71F66D516000DC924 /* Assets.xcassets */; };
 		9523E8DB1F66D516000DC924 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9523E8D91F66D516000DC924 /* LaunchScreen.storyboard */; };
+		952CBEF31F828FF800DCEFE7 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CBEF11F828FF800DCEFE7 /* NewsTableViewCell.swift */; };
+		952CBEF41F828FF800DCEFE7 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952CBEF21F828FF800DCEFE7 /* NewsTableViewCell.xib */; };
+		952CBEF61F82902100DCEFE7 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CBEF51F82902100DCEFE7 /* NoteViewController.swift */; };
 		953E593A1F7438EF00418F1F /* InformationAboutUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953E59391F7438EF00418F1F /* InformationAboutUserTableViewController.swift */; };
 		953E593D1F75510600418F1F /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953E593B1F75510600418F1F /* StatusTableViewCell.swift */; };
 		953E593E1F75510600418F1F /* StatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953E593C1F75510600418F1F /* StatusTableViewCell.xib */; };
@@ -56,6 +59,9 @@
 		9523E8D71F66D516000DC924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9523E8DA1F66D516000DC924 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9523E8DC1F66D516000DC924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		952CBEF11F828FF800DCEFE7 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		952CBEF21F828FF800DCEFE7 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		952CBEF51F82902100DCEFE7 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoteViewController.swift; path = "VKDesign(11September)/ViewControllers/NoteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		953E59391F7438EF00418F1F /* InformationAboutUserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAboutUserTableViewController.swift; sourceTree = "<group>"; };
 		953E593B1F75510600418F1F /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		953E593C1F75510600418F1F /* StatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusTableViewCell.xib; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 				953E59401F75A77E00418F1F /* MainInfoTableViewCell.xib */,
 				95CC0C031F7014E900331F8A /* FollowerTableViewCell.xib */,
 				95CC0C021F7014E900331F8A /* FollowerTableViewCell.swift */,
+				952CBEF11F828FF800DCEFE7 /* NewsTableViewCell.swift */,
+				952CBEF21F828FF800DCEFE7 /* NewsTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -179,6 +187,7 @@
 				9523E8D21F66D516000DC924 /* ViewController.swift */,
 				953E59391F7438EF00418F1F /* InformationAboutUserTableViewController.swift */,
 				95CC0C001F7014A300331F8A /* FollowersTableViewController.swift */,
+				952CBEF51F82902100DCEFE7 /* NoteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -233,6 +242,7 @@
 					9523E8CC1F66D516000DC924 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 77843YCLH4;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -270,6 +280,7 @@
 				95CC0C051F7014E900331F8A /* FollowerTableViewCell.xib in Resources */,
 				95215AEB1F77D5AB00F1CABF /* MoreInfoTableViewCell.xib in Resources */,
 				953E594F1F77170200418F1F /* EducationTableViewCell.xib in Resources */,
+				952CBEF41F828FF800DCEFE7 /* NewsTableViewCell.xib in Resources */,
 				953E59531F77C8FE00418F1F /* GiftsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952CBEF61F82902100DCEFE7 /* NoteViewController.swift in Sources */,
 				953E59451F76E0A600418F1F /* ContactsTableViewCell.swift in Sources */,
 				9523E8D31F66D516000DC924 /* ViewController.swift in Sources */,
 				95E6FB7A1F79516A0056C7F7 /* MainInfo.swift in Sources */,
@@ -289,6 +301,7 @@
 				95E6FB781F7951340056C7F7 /* Contacts.swift in Sources */,
 				95E6FB7C1F79518B0056C7F7 /* EducationalEstablishments.swift in Sources */,
 				954445B81F786956000C1F5E /* InformationViewModelEducationItem.swift in Sources */,
+				952CBEF31F828FF800DCEFE7 /* NewsTableViewCell.swift in Sources */,
 				953E594E1F77170200418F1F /* EducationTableViewCell.swift in Sources */,
 				954445AF1F786836000C1F5E /* InformationViewModelStatusItem.swift in Sources */,
 				9523E8D11F66D516000DC924 /* AppDelegate.swift in Sources */,
@@ -434,7 +447,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.blvvvck.VKDesign-11September-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -447,7 +461,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.blvvvck.VKDesign-11September-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

@@ -27,6 +27,7 @@ class FollowerTableViewCell: UITableViewCell {
         avatarImageView.sizeToFit()
         onlineImageView.sizeToFit()
         avatarImageView.roundCorners( [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: radiusRoundCorner)
+        avatarImageView.clipsToBounds = true
     }
 }
 

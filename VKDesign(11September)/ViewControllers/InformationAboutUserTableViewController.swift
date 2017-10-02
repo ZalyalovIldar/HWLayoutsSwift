@@ -124,7 +124,7 @@ class InformationAboutUserTableViewController: UITableViewController {
         locationLabel.sizeToFit()
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
+    @objc func handleRefresh(refreshControl: UIRefreshControl) {
         items.removeAll()
         initStatus()
         initMainInfo()
