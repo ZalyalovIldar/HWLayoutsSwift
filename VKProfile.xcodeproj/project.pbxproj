@@ -22,6 +22,12 @@
 		CB7061E31F76DDC3008A14A8 /* OtherInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7061E11F76DDC3008A14A8 /* OtherInfoTableViewCell.swift */; };
 		CB7061E41F76DDC3008A14A8 /* OtherInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7061E21F76DDC3008A14A8 /* OtherInfoTableViewCell.xib */; };
 		CB7061E61F76DFA2008A14A8 /* OtherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7061E51F76DFA2008A14A8 /* OtherInfo.swift */; };
+		CB7134111F82828F00D0FF16 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71340F1F82828F00D0FF16 /* NewsTableViewCell.swift */; };
+		CB7134121F82828F00D0FF16 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7134101F82828F00D0FF16 /* NewsTableViewCell.xib */; };
+		CB7134141F8283F500D0FF16 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7134131F8283F500D0FF16 /* News.swift */; };
+		CB7134161F828AD200D0FF16 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7134151F828AD200D0FF16 /* NoteViewController.swift */; };
+		CB7134191F828C6400D0FF16 /* CreateNewsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7134181F828C6400D0FF16 /* CreateNewsDelegate.swift */; };
+		CB71341B1F82914C00D0FF16 /* BorderCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB71341A1F82914C00D0FF16 /* BorderCreater.swift */; };
 		CB7DFB981F7011C90041877A /* FollowersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7DFB961F7011C90041877A /* FollowersTableViewController.swift */; };
 		CB7DFB9C1F7012400041877A /* FollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7DFB9A1F7012400041877A /* FollowerTableViewCell.swift */; };
 		CB7DFB9D1F7012400041877A /* FollowerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7DFB9B1F7012400041877A /* FollowerTableViewCell.xib */; };
@@ -67,6 +73,12 @@
 		CB7061E11F76DDC3008A14A8 /* OtherInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CB7061E21F76DDC3008A14A8 /* OtherInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherInfoTableViewCell.xib; sourceTree = "<group>"; };
 		CB7061E51F76DFA2008A14A8 /* OtherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherInfo.swift; sourceTree = "<group>"; };
+		CB71340F1F82828F00D0FF16 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		CB7134101F82828F00D0FF16 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		CB7134131F8283F500D0FF16 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		CB7134151F828AD200D0FF16 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		CB7134181F828C6400D0FF16 /* CreateNewsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewsDelegate.swift; sourceTree = "<group>"; };
+		CB71341A1F82914C00D0FF16 /* BorderCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCreater.swift; sourceTree = "<group>"; };
 		CB7DFB961F7011C90041877A /* FollowersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersTableViewController.swift; sourceTree = "<group>"; };
 		CB7DFB9A1F7012400041877A /* FollowerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerTableViewCell.swift; sourceTree = "<group>"; };
 		CB7DFB9B1F7012400041877A /* FollowerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerTableViewCell.xib; sourceTree = "<group>"; };
@@ -124,6 +136,7 @@
 		CB5A1A741F66D55500C1971E /* VKProfile */ = {
 			isa = PBXGroup;
 			children = (
+				CB7134171F828C0600D0FF16 /* Protocols */,
 				CBD104501F7572C900A48BCD /* Structs */,
 				CBD1044D1F75652400A48BCD /* UserInfo */,
 				CBD104401F743C0E00A48BCD /* Controllers */,
@@ -139,6 +152,14 @@
 			path = VKProfile;
 			sourceTree = "<group>";
 		};
+		CB7134171F828C0600D0FF16 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CB7134181F828C6400D0FF16 /* CreateNewsDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		CBD1043C1F743B5800A48BCD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +168,7 @@
 				CB42F4D41F73048900871971 /* ImageRounder.swift */,
 				CB42F4D61F7304ED00871971 /* ColorRGB.swift */,
 				CB42F4D81F730BA000871971 /* EndingWord.swift */,
+				CB71341A1F82914C00D0FF16 /* BorderCreater.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -182,6 +204,8 @@
 				CB7061DC1F76C7F4008A14A8 /* PresentTableViewCell.xib */,
 				CB7061E11F76DDC3008A14A8 /* OtherInfoTableViewCell.swift */,
 				CB7061E21F76DDC3008A14A8 /* OtherInfoTableViewCell.xib */,
+				CB71340F1F82828F00D0FF16 /* NewsTableViewCell.swift */,
+				CB7134101F82828F00D0FF16 /* NewsTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -192,6 +216,7 @@
 				CB5A1A771F66D55500C1971E /* ViewController.swift */,
 				CB7DFB961F7011C90041877A /* FollowersTableViewController.swift */,
 				CB42F4D11F73035400871971 /* InfoTableViewController.swift */,
+				CB7134151F828AD200D0FF16 /* NoteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD104511F7572E400A48BCD /* CellInfo.swift */,
+				CB7134131F8283F500D0FF16 /* News.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -278,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7134121F82828F00D0FF16 /* NewsTableViewCell.xib in Resources */,
 				CBD104481F752E2900A48BCD /* MainInfoTableViewCell.xib in Resources */,
 				CB5A1A801F66D55500C1971E /* LaunchScreen.storyboard in Resources */,
 				CBD1044C1F75633D00A48BCD /* ContactTableViewCell.xib in Resources */,
@@ -306,6 +333,7 @@
 				CB7061E01F76CBA3008A14A8 /* PresentInfo.swift in Sources */,
 				CB7DFB981F7011C90041877A /* FollowersTableViewController.swift in Sources */,
 				CBD104431F744D7400A48BCD /* StatusTableViewCell.swift in Sources */,
+				CB7134161F828AD200D0FF16 /* NoteViewController.swift in Sources */,
 				CBD104541F7575F000A48BCD /* MainInfo.swift in Sources */,
 				CB8489931F75AB3800D2FEE7 /* Institute.swift in Sources */,
 				CBD1044B1F75633D00A48BCD /* ContactTableViewCell.swift in Sources */,
@@ -318,16 +346,20 @@
 				CB5A1A761F66D55500C1971E /* AppDelegate.swift in Sources */,
 				CB7061E61F76DFA2008A14A8 /* OtherInfo.swift in Sources */,
 				CBD104641F75A66D00A48BCD /* EducationInfo.swift in Sources */,
+				CB7134141F8283F500D0FF16 /* News.swift in Sources */,
 				CB7061E31F76DDC3008A14A8 /* OtherInfoTableViewCell.swift in Sources */,
 				CB9B22AF1F6EACEE0093AA92 /* UserInfoData.swift in Sources */,
 				CBD104471F752E2900A48BCD /* MainInfoTableViewCell.swift in Sources */,
 				CB42F4D71F7304ED00871971 /* ColorRGB.swift in Sources */,
 				CB9B22AD1F6EA7B10093AA92 /* User.swift in Sources */,
+				CB71341B1F82914C00D0FF16 /* BorderCreater.swift in Sources */,
 				CB7DFB9C1F7012400041877A /* FollowerTableViewCell.swift in Sources */,
 				CB8489951F75AB5A00D2FEE7 /* School.swift in Sources */,
 				CB42F4D51F73048900871971 /* ImageRounder.swift in Sources */,
+				CB7134111F82828F00D0FF16 /* NewsTableViewCell.swift in Sources */,
 				CBD1045A1F757D2300A48BCD /* ProfessionInfo.swift in Sources */,
 				CBD104571F757AC300A48BCD /* ProfessionTableViewCell.swift in Sources */,
+				CB7134191F828C6400D0FF16 /* CreateNewsDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

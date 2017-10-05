@@ -17,14 +17,6 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var yearTextLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
-    let professionHeight: CGFloat = 92
-    let instituteHeight: CGFloat = 166
-    let schoolHeight: CGFloat = 156
-    let presentHeight: CGFloat = 120
-    let otherInfoHeight: CGFloat = 44
-    let contactHeight: CGFloat = 44
-    let defaultHeight: CGFloat = 68
-    
     let contacts = "контакты"
     let career = "карьера"
     let education = "образование"
@@ -45,7 +37,9 @@ class InfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
+        tableView.estimatedSectionHeaderHeight = 50
         
         prepareNavBar()
         createPullToRefresh()
@@ -58,19 +52,19 @@ class InfoTableViewController: UITableViewController {
     //MARK: - setting UI information
     
     private func prepareNavBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.title = user.name
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        title = user.name
     }
     
     private func createPullToRefresh() {
         let refreshText = "Pull to random"
         
-        self.refreshControl = UIRefreshControl()
-        if let refreshControl = self.refreshControl {
+        refreshControl = UIRefreshControl()
+        if let refreshControl = refreshControl {
             refreshControl.attributedTitle = NSAttributedString(string: refreshText)
             refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-            self.tableView.addSubview(refreshControl)
+            tableView.addSubview(refreshControl)
         }
     }
     
@@ -188,31 +182,6 @@ class InfoTableViewController: UITableViewController {
         }
 
         return UITableViewCell()
-    }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let contactSection = 2
-        let professionSection = 3
-        let educationSection = 4
-        let presentSection = 5
-        let otherInfoSection = 6
-        
-        if (indexPath.section == professionSection) {
-            return professionHeight
-        } else if (indexPath.section == educationSection) {
-            if indexPath.row == 0 {
-                return instituteHeight
-            } else {
-                return schoolHeight
-            }
-        } else if (indexPath.section == presentSection) {
-            return presentHeight
-        } else if (indexPath.section == otherInfoSection) {
-            return otherInfoHeight
-        } else if (indexPath.section == contactSection) {
-            return contactHeight
-        }
-        return defaultHeight
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

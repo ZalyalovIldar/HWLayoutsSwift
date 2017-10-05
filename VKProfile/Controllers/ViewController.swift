@@ -8,14 +8,7 @@
 
 import UIKit
 
-fileprivate enum BorderPosition {
-    case top
-    case bottom
-    case right
-    case left
-}
-
-class ViewController: UIViewController {
+class ViewController: UITableViewController, CreateNewsDelegate {
 
     @IBOutlet weak var infoScrollView: UIScrollView!
     @IBOutlet weak var photoScrollView: UIScrollView!
@@ -35,24 +28,61 @@ class ViewController: UIViewController {
     var indentionButtonConstraints = [NSLayoutConstraint]()
     var imageViews = [UIImageView]()
     var indentionImageViewConstraints = [NSLayoutConstraint]()
+    let defaultIndention: CGFloat = 8
     let photo = "фото"
     let audio = "аудио"
     let video = "видео"
     let seperator = ","
-    let infoIdentifier = "infoSegue"
-    let followersIdentifier = "followersSegue"
-    let defaultIndention: CGFloat = 8
+    
+    let infoIdentifierSegue = "infoSegue"
+    let followersIdentifierSegue = "followersSegue"
+    let createNewsIdentifierSegue = "createNewsSegue"
+    
+    let newsCellIdentefier = "newsCell"
+    var news = [News]()
+    
+    let buttonCounts = 8
+    let fontName = "Arial"
+    
+    //Buttons section
+    let friendsButton = 0
+    let followersButton = 1
+    let groupsButton = 2
+    let albumButton = 3
+    let videosButton = 4
+    let audiosButton = 5
+    let presentsButton = 6
+    let filesButton = 7
+    let createNewsButton = 0
+    let takePhotoButton = 1
+    
+    let imageWidth: CGFloat = 129
+    let imageHeight: CGFloat = 97
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         user = generateUser()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
+        registerCell()
         setLabels()
         createButtons()
         createImageViews()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    //MARK: - initialize methods
+    
+    private func registerCell() {
+        let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: newsCellIdentefier)
     }
     
     @objc private func rotated() {
@@ -68,8 +98,6 @@ class ViewController: UIViewController {
     }
     
     private func createButtons() {
-        let buttonCounts = 8
-        let fontName = "Arial"
         let textSize:CGFloat = 15
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
@@ -95,23 +123,20 @@ class ViewController: UIViewController {
             NSLayoutConstraint.activate([yCenterConstraint, leadingConstraint])
         }
         
-        setTitle(with: infoButtons[0], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
-        setTitle(with: infoButtons[1], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
-        setTitle(with: infoButtons[2], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
-        setTitle(with: infoButtons[3], count: user.photos.count, word: photo, attributes: attributes)
-        setTitle(with: infoButtons[4], count: user.videos, word: video, attributes: attributes)
-        setTitle(with: infoButtons[5], count: user.audios, word: audio, attributes: attributes)
-        setTitle(with: infoButtons[6], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
-        setTitle(with: infoButtons[7], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
+        setTitle(with: infoButtons[friendsButton], count: user.friends, declinationWord: DeclinationWordDictionary.friend, attributes: attributes)
+        setTitle(with: infoButtons[followersButton], count: user.followers.count, declinationWord: DeclinationWordDictionary.follower, attributes: attributes)
+        setTitle(with: infoButtons[groupsButton], count: user.groups, declinationWord: DeclinationWordDictionary.group, attributes: attributes)
+        setTitle(with: infoButtons[albumButton], count: user.photos.count, word: photo, attributes: attributes)
+        setTitle(with: infoButtons[videosButton], count: user.videos, word: video, attributes: attributes)
+        setTitle(with: infoButtons[audiosButton], count: user.audios, word: audio, attributes: attributes)
+        setTitle(with: infoButtons[presentsButton], count: user.presents, declinationWord: DeclinationWordDictionary.present, attributes: attributes)
+        setTitle(with: infoButtons[filesButton], count: user.files, declinationWord: DeclinationWordDictionary.file, attributes: attributes)
         
-        infoButtons[1].addTarget(self, action: #selector(onFollowersClick), for: .touchUpInside)
+        infoButtons[createNewsButton].addTarget(self, action: #selector(onFollowersClick), for: .touchUpInside)
         
     }
     
     private func createImageViews() {
-        let imageWidth: CGFloat = 129
-        let imageHeight: CGFloat = 97
-        
         for _ in 0 ..< user.photos.count {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -138,10 +163,9 @@ class ViewController: UIViewController {
     
     private func changeDistance(in scrollView: UIScrollView, with elements: [UIView], constraints: [NSLayoutConstraint]) {
         let screenWidth = UIScreen.main.bounds.width
-        let indentation: CGFloat = 8
         var elementsWidth: CGFloat = 0
         elements.forEach { elementsWidth += $0.frame.width }
-        let newDistance = (screenWidth - indentation * 2 - elementsWidth) / CGFloat(elements.count)
+        let newDistance = (screenWidth - defaultIndention * 2 - elementsWidth) / CGFloat(elements.count)
         constraints.forEach { $0.constant = newDistance }
     }
     
@@ -159,61 +183,14 @@ class ViewController: UIViewController {
         scrollView.contentSize = CGSize(width: widthContent, height: heightContent)
     }
     
-    private func createBorders(to view: UIView, on position: BorderPosition) {
-        let borderWidth = CGFloat(2.0)
-        let marginX = CGFloat(10)
-        var borderLength = CGFloat(UIScreen.main.bounds.width - marginX * 2)
-        let borderColor = UIColor(rgb: 0xdbd6d6).cgColor
-        let borderMargin: CGFloat = 1.0
-        let noneMargin:CGFloat = 0
-        
-        if (view is UIScrollView) {
-            borderLength = UIScreen.main.bounds.height - marginX * 2
-        }
-        
-        switch position {
-        case .top:
-            let borderTop = CALayer()
-            borderTop.borderColor = borderColor
-            borderTop.frame = CGRect(x: marginX, y: noneMargin, width: borderLength, height: borderMargin)
-            borderTop.borderWidth = borderWidth
-            
-            view.layer.addSublayer(borderTop)
-            view.layer.masksToBounds = true
-            break
-        case .bottom:
-            let borderBottom = CALayer()
-            borderBottom.borderColor = borderColor
-            borderBottom.frame = CGRect(x: marginX, y: view.frame.height - borderMargin, width: borderLength, height: view.frame.height - borderMargin)
-            borderBottom.borderWidth = borderWidth
-            
-            view.layer.addSublayer(borderBottom)
-            view.layer.masksToBounds = true
-            break
-        case .right:
-            let borderRight = CALayer()
-            borderRight.borderColor = borderColor
-            borderRight.frame = CGRect(x: view.frame.width - borderMargin, y: noneMargin, width: borderMargin, height: view.frame.height)
-            borderRight.borderWidth = borderWidth
-            
-            view.layer.addSublayer(borderRight)
-            break
-        case .left:
-            let borderLeft = CALayer()
-            borderLeft.borderColor = borderColor
-            borderLeft.frame = CGRect(x: noneMargin, y: noneMargin, width: borderMargin, height: view.frame.height)
-            
-            view.layer.addSublayer(borderLeft)
-            break
-        }
-    }
-    
     private func createStyles() {
-        createBorders(to: infoScrollView, on: .bottom)
-        createBorders(to: infoScrollView, on: .top)
-        createBorders(to: buttonsView, on: .top)
-        createBorders(to: menuButtons[1], on: .right)
-        createBorders(to: menuButtons[0], on: .right)
+        let defaultMarginX:CGFloat = 10
+        
+        infoScrollView.createBorders(on: .bottom, marginX: defaultMarginX)
+        infoScrollView.createBorders(on: .top, marginX: defaultMarginX)
+        buttonsView.createBorders(on: .top, marginX: defaultMarginX)
+        menuButtons[createNewsButton].createBorders(on: .right, marginX: defaultMarginX)
+        menuButtons[takePhotoButton].createBorders(on: .right, marginX: defaultMarginX)
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x3180d6)
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
@@ -248,6 +225,8 @@ class ViewController: UIViewController {
         avatarImage.image = user.profileImage
     }
     
+    //MARK: - button methods
+    
     private func setTitle(with button: UIButton, count: Int, declinationWord: DeclinationWord, attributes: [NSAttributedStringKey : Any]) {
         let title = EndingWord.getCorrectEnding(with: count, and: declinationWord)
         let attrString = NSAttributedString(string: "\(count)" + "\n" + title, attributes: attributes)
@@ -259,33 +238,55 @@ class ViewController: UIViewController {
         button.setAttributedTitle(attrString, for: .normal)
     }
     
-    @IBAction func onInfoClick(_ sender: UIButton) {
-        if (count == 5) {
-            user = generateUser()
-            setLabels()
-            count = 0
-        } else {
-            count += 1
+    func createNews(from newsData: News) {
+        news.append(newsData)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
     @objc private func onFollowersClick(sender: UIButton!) {
-        performSegue(withIdentifier: followersIdentifier, sender: nil)
+        performSegue(withIdentifier: followersIdentifierSegue, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if (segue.identifier == followersIdentifier) {
+        if (segue.identifier == followersIdentifierSegue) {
             let followerTVC = segue.destination as! FollowersTableViewController
             followerTVC.followers = user.followers
-        } else if (segue.identifier == infoIdentifier) {
+        } else if (segue.identifier == infoIdentifierSegue) {
             let backItem = UIBarButtonItem()
             self.navigationItem.backBarButtonItem = backItem
             
             let infoTVC = segue.destination as! InfoTableViewController
             infoTVC.user = user
+        } else if (segue.identifier == createNewsIdentifierSegue) {
+            let noteVC = segue.destination as! NoteViewController
+            noteVC.createNewsDelegate = self
         }
+    }
+    
+    //MARK: - TableView methods
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return news.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: newsCellIdentefier, for: indexPath) as! NewsTableViewCell
         
+        let news = self.news[indexPath.row]
+        cell.prepareCell(with: news)
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
 }
