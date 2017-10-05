@@ -10,16 +10,15 @@ import UIKit
 
 class ProfileTableViewController: UITableViewController {
     
-    let mainInfoIdentifier = "mainInformationCell"
-    let contactsIdentifier = "contactsCell"
-    let careerIdentifier = "careerCell"
-    let educationIdentifier = "educationCell"
-    let interestsIdentifier = "interestsCell"
-    let statusIdentifier = "statusCell"
-    let giftsIdentifier = "giftsCell"
-    let headerIdentifier = "headerCell"
-    let labelIdentifier = "LabelCell"
-
+    fileprivate let mainInfoIdentifier = "mainInformationCell"
+    fileprivate let contactsIdentifier = "contactsCell"
+    fileprivate let careerIdentifier = "careerCell"
+    fileprivate let educationIdentifier = "educationCell"
+    fileprivate let interestsIdentifier = "interestsCell"
+    fileprivate let statusIdentifier = "statusCell"
+    fileprivate let giftsIdentifier = "giftsCell"
+    fileprivate let headerIdentifier = "headerCell"
+    fileprivate let labelIdentifier = "LabelCell"
     
     @IBOutlet weak var usersAvatar: UIImageView!
     
@@ -44,11 +43,12 @@ class ProfileTableViewController: UITableViewController {
     var educationSection = 4
     var giftsSection = 5
     var interestsSection = 6
-    var interestsSectionRowHeight = 65
-    var sectionsRowHeight = 70
-    var mainInfoHeaderHeight = 3
-    var giftsHeaderHeight = 70
-    var headerHeight = 30
+    
+    var interestsSectionRowHeight: CGFloat = 65
+    var sectionsRowHeight: CGFloat = 70
+    var mainInfoHeaderHeight: CGFloat = 3
+    var giftsHeaderHeight: CGFloat = 70
+    var headerHeight: CGFloat = 30
     
     var profileUser = User(name: "Элина", surname: "Батырова", avatar: UIImage.init(named: "Elina")!, photos: [UIImage.init(named: "heart")!], status: "online (моб.)", profile: [Information(sectionName: "Изменить статус", rowsNames: [], rowsImages: [], rowsFilling: []), Information(sectionName: "", rowsNames: ["День рождения", "Семейное положение", "Языки", "Братья, сестры" ], rowsImages: [], rowsFilling: ["17 октября 1998", "не замужем", "русский, english", "Эльвира Батырова"]), Information(sectionName: "Контакты", rowsNames: [], rowsImages: [
         UIImage(named: "phone icon")!, UIImage(named: "home icon")!, UIImage(named: "vk icon")!], rowsFilling: ["89667845699", "Kazan, Nab.Chelny", "vk.com/id8888"]), Information(sectionName: "Карьера", rowsNames: ["iOS lab"], rowsImages: [UIImage(named:"ios icon")!], rowsFilling: ["iOS Developer"]), Information(sectionName: "Образование", rowsNames: ["Вуз", "Школа"], rowsImages: [], rowsFilling: ["КФУ (бывш. КГУ им. Ульянова-Ленина)", "Лицей 78 им.А.С.Пушкина"]), Information(sectionName: "Подарки", rowsNames: [], rowsImages: [], rowsFilling: []), Information(sectionName: "", rowsNames: ["Интересные страницы", "Заметки", "Документы"], rowsImages: [], rowsFilling: ["12", "3","56"])] )
@@ -92,15 +92,13 @@ class ProfileTableViewController: UITableViewController {
         
         usersAvatar.image = UIImage(named: "ios icon")
         
-        self.tableView.reloadData()
+        tableView.reloadData()
         
         sender.endRefreshing()
     }
     
     func setupNavigationBar() {
-        
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     func nibsRegister() {
@@ -213,9 +211,9 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == interestsSection {
-            return CGFloat(interestsSectionRowHeight)
+            return interestsSectionRowHeight
         }
-        return CGFloat(interestsSectionRowHeight)
+        return interestsSectionRowHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -249,13 +247,13 @@ class ProfileTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == mainInformationSection {
-            return CGFloat(mainInfoHeaderHeight)
+            return mainInfoHeaderHeight
         }
         
         if section == giftsSection {
-            return CGFloat(giftsHeaderHeight)
+            return giftsHeaderHeight
         }
-        return CGFloat(headerHeight)
+        return headerHeight
     }
    
 }

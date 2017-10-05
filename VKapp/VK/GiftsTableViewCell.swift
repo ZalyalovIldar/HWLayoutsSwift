@@ -12,9 +12,4 @@ class GiftsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var giftsCountLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }

@@ -13,6 +13,7 @@
 		C32242D51F781AE4003C8470 /* EducationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32242D31F781AE4003C8470 /* EducationTableViewCell.xib */; };
 		C32242D81F781D44003C8470 /* InterestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32242D61F781D44003C8470 /* InterestsTableViewCell.swift */; };
 		C32242D91F781D44003C8470 /* InterestsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32242D71F781D44003C8470 /* InterestsTableViewCell.xib */; };
+		C34BEC9A1F828B9200B8A6CA /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BEC991F828B9100B8A6CA /* NotesViewController.swift */; };
 		C3729EC31F77A5F4004ED667 /* Users Information structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3729EC21F77A5F4004ED667 /* Users Information structures.swift */; };
 		C3729EC51F77AF0D004ED667 /* StatusCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3729EC41F77AF0D004ED667 /* StatusCustomTableViewCell.xib */; };
 		C3729EC71F77B010004ED667 /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3729EC61F77B010004ED667 /* StatusTableViewCell.swift */; };
@@ -62,6 +63,7 @@
 		C32242D31F781AE4003C8470 /* EducationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationTableViewCell.xib; sourceTree = "<group>"; };
 		C32242D61F781D44003C8470 /* InterestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestsTableViewCell.swift; path = VK/InterestsTableViewCell.swift; sourceTree = "<group>"; };
 		C32242D71F781D44003C8470 /* InterestsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InterestsTableViewCell.xib; sourceTree = "<group>"; };
+		C34BEC991F828B9100B8A6CA /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		C3729EC21F77A5F4004ED667 /* Users Information structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Users Information structures.swift"; sourceTree = "<group>"; };
 		C3729EC41F77AF0D004ED667 /* StatusCustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusCustomTableViewCell.xib; sourceTree = "<group>"; };
 		C3729EC61F77B010004ED667 /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusTableViewCell.swift; path = VK/StatusTableViewCell.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				C3C256181F7010BA00DC43E4 /* FollowersTableViewController.swift */,
 				C375313E1F75ACBD00D3AE0D /* ProfileTableViewController.swift */,
 				C37889D11F66D53C001572B6 /* ViewController.swift */,
+				C34BEC991F828B9100B8A6CA /* NotesViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				C32242D41F781AE4003C8470 /* EducationTableViewCell.swift in Sources */,
 				C3729ED61F77D51F004ED667 /* GiftsTableViewCell.swift in Sources */,
 				C3729ECB1F77B4C0004ED667 /* MainInformationTableViewCell.swift in Sources */,
+				C34BEC9A1F828B9200B8A6CA /* NotesViewController.swift in Sources */,
 				C3C2561F1F70173500DC43E4 /* Users base.swift in Sources */,
 				C3C256191F7010BA00DC43E4 /* FollowersTableViewController.swift in Sources */,
 				C3729ED31F77D297004ED667 /* CustomHeaderTableViewCell.swift in Sources */,

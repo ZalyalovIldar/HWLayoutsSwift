@@ -38,8 +38,4 @@ class CustomFollowersTableViewCell: UITableViewCell {
         
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
 }

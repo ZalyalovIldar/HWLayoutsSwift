@@ -14,11 +14,6 @@ class ContactsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var contactLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func prepareCell(with user: User, cellForRowAt indexPath: IndexPath) {
         contactsIcon.image = user.profile[indexPath.section].rowsImages[indexPath.row]
         
@@ -28,5 +23,4 @@ class ContactsTableViewCell: UITableViewCell {
             contactLabel.textColor = UIColor.blue
         }
     }
-
 }

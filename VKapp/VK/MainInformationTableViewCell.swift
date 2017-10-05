@@ -14,12 +14,6 @@ class MainInformationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var rowFillingLabel: UILabel!
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func prepareCell(with user: User, cellForRowAt indexPath: IndexPath) {
         
         let rowsName = user.profile[indexPath.section].rowsNames[indexPath.row]

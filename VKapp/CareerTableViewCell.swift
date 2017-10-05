@@ -18,11 +18,6 @@ class CareerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var companysImage: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func prepareCell(with user: User, cellForRowAt indexPath: IndexPath) {
         jobLabel.text = user.profile[indexPath.section].rowsNames[indexPath.row]
         

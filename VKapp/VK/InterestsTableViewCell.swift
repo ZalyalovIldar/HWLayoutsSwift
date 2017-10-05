@@ -14,12 +14,6 @@ class InterestsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var interestsCountLabel: UILabel!
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func prepareCell(with user: User, cellForRowAt indexPath: IndexPath) {
         interestNameLabel.text = user.profile[indexPath.section].rowsNames[indexPath.row]
         

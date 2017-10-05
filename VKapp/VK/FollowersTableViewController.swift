@@ -12,23 +12,23 @@ fileprivate let cellIdentifier = "customCell"
 
 class FollowersTableViewController: UITableViewController {
     
+    fileprivate let followersCellNibName = "CustomFollowersTableViewCell"
+    fileprivate var rowAtHeight: CGFloat = 100
+    fileprivate var iosIconImageName = "ios icon"
+    
     var users: [User] = [User(name: "Элина", surname: "Батырова", avatar: UIImage.init(named: "Elina")!, photos: [UIImage.init(named: "heart")!], status: "online (моб.)", profile: [] ), User(name: "Эльвира", surname: "Батырова", avatar: UIImage.init(named: "Elvira")!, photos: [UIImage.init(named: "heart")!], status: "online", profile: [] ), User(name: "Айгуль", surname: "Ризатдинова", avatar: UIImage.init(named: "Information")!, photos: [UIImage.init(named: "heart")!], status: "offline", profile: [])]
     
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
     
         setupRefreshControl()
-    
         setupNavigationBar()
         
         cellsRegister()
-
     }
     
     func cellsRegister() {
-        let nib = UINib(nibName: "CustomFollowersTableViewCell", bundle: nil)
+        let nib = UINib(nibName: followersCellNibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
     }
     
@@ -39,18 +39,17 @@ class FollowersTableViewController: UITableViewController {
     }
     
     func setupNavigationBar() {
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     func refreshTableView(sender: UIRefreshControl) {
         
         if users.count > 0 {
         
-        users[users.count - 1].avatar = UIImage(named: "ios icon")!
+        users[users.count - 1].avatar = UIImage(named: iosIconImageName)!
         }
         
-        self.tableView.reloadData()
+        tableView.reloadData()
         
         sender.endRefreshing()
     }
@@ -78,35 +77,10 @@ class FollowersTableViewController: UITableViewController {
         
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        return true
-    }
- 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            
-            users.remove(at: indexPath.row)
-            
-            tableView.deleteRows(at: [indexPath], with: .top)
-            
-        } else if editingStyle == .insert {
-            
-            tableView.insertRows(at: [indexPath], with: .middle)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        
-        return true
-    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 100
+        return rowAtHeight
     }
-
 }
 

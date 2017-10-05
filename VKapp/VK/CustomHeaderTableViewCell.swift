@@ -12,11 +12,6 @@ class CustomHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var headerLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func prepareCell(with user: User, viewForHeaderInSection section: Int) {
         headerLabel.text = user.profile[section].sectionName
     }

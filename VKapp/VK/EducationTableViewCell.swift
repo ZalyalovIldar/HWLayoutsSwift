@@ -13,11 +13,6 @@ class EducationTableViewCell: UITableViewCell {
     @IBOutlet weak var educationTypeLabel: UILabel!
     
     @IBOutlet weak var educationPlaceLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     func prepareCell(with user: User, cellForRowAt indexPath: IndexPath) {
         
