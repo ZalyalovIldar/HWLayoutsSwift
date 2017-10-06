@@ -10,6 +10,10 @@ import UIKit
 
 class NewsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var noteLabel: UILabel!
     
+    func prepare(with text: String) {
     
+        noteLabel.text = text
+    }
 }

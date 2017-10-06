@@ -22,9 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6kW-nG-S4k">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="6kW-nG-S4k">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="7eW-M0-NAg">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="334"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -274,7 +274,7 @@
                                                 </attributedString>
                                             </state>
                                             <connections>
-                                                <segue destination="OWe-5x-uOb" kind="showDetail" id="yKj-Tb-sWg"/>
+                                                <segue destination="OWe-5x-uOb" kind="showDetail" identifier="noteSequeIdentifier" id="yKj-Tb-sWg"/>
                                             </connections>
                                         </button>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEb-uJ-Xr1">
@@ -436,7 +436,11 @@
                     <navigationItem key="navigationItem" id="F8s-du-1q1">
                         <barButtonItem key="backBarButtonItem" title="     " id="AoQ-Ri-38T"/>
                         <barButtonItem key="leftBarButtonItem" image="menu" style="plain" id="uw2-Mw-f41"/>
-                        <barButtonItem key="rightBarButtonItem" image="17223" id="Pde-k1-4AF"/>
+                        <barButtonItem key="rightBarButtonItem" image="17223" id="Pde-k1-4AF">
+                            <connections>
+                                <action selector="moreInfoButtonPressed:" destination="BYZ-38-t0r" id="xEH-NJ-n7S"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="aboutScroll" destination="Nng-QV-FyW" id="xwC-Cb-UdC"/>
@@ -457,6 +461,7 @@
                         <outlet property="photoScroll" destination="zEb-uJ-Xr1" id="GcA-F3-zD6"/>
                         <outlet property="photosCount" destination="Dyf-XH-d8W" id="VLg-1t-4A3"/>
                         <outlet property="surnameLabel" destination="KBE-Yt-EPE" id="ggj-oA-pZQ"/>
+                        <outlet property="tableView" destination="6kW-nG-S4k" id="kzT-Ja-DHE"/>
                         <outlet property="videoCount" destination="AXO-nF-QPH" id="Gix-iK-mna"/>
                     </connections>
                 </viewController>
@@ -487,21 +492,27 @@
                                                 <action selector="cancelButton:" destination="OWe-5x-uOb" id="ur8-k3-iDz"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="8HW-Ib-jN2"/>
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="8HW-Ib-jN2">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="OWe-5x-uOb" id="TnA-xs-AOH"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add note" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xrF-n1-TlQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xrF-n1-TlQ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="noteTextView" destination="xrF-n1-TlQ" id="QHs-Df-uxo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVK-Ux-Vrs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

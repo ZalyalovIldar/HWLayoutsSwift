@@ -52,6 +52,8 @@ class InformationAboutUserTableViewController: UITableViewController {
     var avatarFrom: UIImage = UIImage(named: "gift1")!
     
     let radiusRoundCorner: CGFloat = 50
+    let rightBarButtonImage = UIImage(named: "17223")
+    let rightBarButtonFrame = CGRect(x: 0, y: 0, width: 30, height: 30)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +66,7 @@ class InformationAboutUserTableViewController: UITableViewController {
         initGifts()
         initMoreInfo()
         profileFromMainView()
-        newDataInTable()
+        setupRefreshControl()
         cellRegistration()
         setRightBarButtonImage()
         setNavigationBarTitle()
@@ -72,14 +74,14 @@ class InformationAboutUserTableViewController: UITableViewController {
     
     func setRightBarButtonImage() {
         let btn1 = UIButton(type: .custom)
-        btn1.setImage(UIImage(named: "17223"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn1.setImage(rightBarButtonImage, for: .normal)
+        btn1.frame = rightBarButtonFrame
         let item1 = UIBarButtonItem(customView: btn1)
-        self.navigationItem.setRightBarButton(item1, animated: true)
+        navigationItem.setRightBarButton(item1, animated: true)
     }
     
     func setNavigationBarTitle() {
-        self.navigationItem.title = name
+        navigationItem.title = name
     }
     
     func cellRegistration() {
@@ -107,7 +109,7 @@ class InformationAboutUserTableViewController: UITableViewController {
         
     }
     
-    func newDataInTable(){
+    func setupRefreshControl(){
         refreshControl?.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: .valueChanged)
     }
     
@@ -134,9 +136,11 @@ class InformationAboutUserTableViewController: UITableViewController {
         initGifts()
         initMoreInfo()
         
-        self.tableView.reloadData()
+        tableView.reloadData()
         refreshControl.endRefreshing()
     }
+    
+    //MARK: Init methods
 
     func initStatus() {
         let status = InformationViewModelStatusItem(status: "\(statusArray[Int(arc4random_uniform(UInt32(statusArray.count)))])")
@@ -193,6 +197,8 @@ class InformationAboutUserTableViewController: UITableViewController {
         }
         items.append(InformationViewModelMoreInfoItem(moreInformations: moreInformation))
     }
+    
+    //MARK: Table View Methods
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         

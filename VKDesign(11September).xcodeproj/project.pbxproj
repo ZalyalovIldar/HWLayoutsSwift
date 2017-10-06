@@ -17,6 +17,8 @@
 		952CBEF31F828FF800DCEFE7 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CBEF11F828FF800DCEFE7 /* NewsTableViewCell.swift */; };
 		952CBEF41F828FF800DCEFE7 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952CBEF21F828FF800DCEFE7 /* NewsTableViewCell.xib */; };
 		952CBEF61F82902100DCEFE7 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952CBEF51F82902100DCEFE7 /* NoteViewController.swift */; };
+		953B047B1F8678F70011F6AD /* DataTransferProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953B047A1F8678F70011F6AD /* DataTransferProtocol.swift */; };
+		953B04811F87BC4F0011F6AD /* ButtonPressedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953B04801F87BC4F0011F6AD /* ButtonPressedProtocol.swift */; };
 		953E593A1F7438EF00418F1F /* InformationAboutUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953E59391F7438EF00418F1F /* InformationAboutUserTableViewController.swift */; };
 		953E593D1F75510600418F1F /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953E593B1F75510600418F1F /* StatusTableViewCell.swift */; };
 		953E593E1F75510600418F1F /* StatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953E593C1F75510600418F1F /* StatusTableViewCell.xib */; };
@@ -62,6 +64,8 @@
 		952CBEF11F828FF800DCEFE7 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		952CBEF21F828FF800DCEFE7 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		952CBEF51F82902100DCEFE7 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoteViewController.swift; path = "VKDesign(11September)/ViewControllers/NoteViewController.swift"; sourceTree = SOURCE_ROOT; };
+		953B047A1F8678F70011F6AD /* DataTransferProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferProtocol.swift; sourceTree = "<group>"; };
+		953B04801F87BC4F0011F6AD /* ButtonPressedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressedProtocol.swift; sourceTree = "<group>"; };
 		953E59391F7438EF00418F1F /* InformationAboutUserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAboutUserTableViewController.swift; sourceTree = "<group>"; };
 		953E593B1F75510600418F1F /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		953E593C1F75510600418F1F /* StatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusTableViewCell.xib; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 		9523E8CF1F66D516000DC924 /* VKDesign(11September) */ = {
 			isa = PBXGroup;
 			children = (
+				953B047C1F86790B0011F6AD /* Protocols */,
 				95F610551F7866B7001F71A4 /* Models */,
 				95F610541F786693001F71A4 /* ViewControllers */,
 				95F610531F786654001F71A4 /* CustomCells */,
@@ -135,6 +140,15 @@
 				9523E8DC1F66D516000DC924 /* Info.plist */,
 			);
 			path = "VKDesign(11September)";
+			sourceTree = "<group>";
+		};
+		953B047C1F86790B0011F6AD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				953B047A1F8678F70011F6AD /* DataTransferProtocol.swift */,
+				953B04801F87BC4F0011F6AD /* ButtonPressedProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		956B69891F786395006B6364 /* Extensions */ = {
@@ -300,6 +314,7 @@
 				95E6FB7E1F7951A90056C7F7 /* MoreInfo.swift in Sources */,
 				95E6FB781F7951340056C7F7 /* Contacts.swift in Sources */,
 				95E6FB7C1F79518B0056C7F7 /* EducationalEstablishments.swift in Sources */,
+				953B04811F87BC4F0011F6AD /* ButtonPressedProtocol.swift in Sources */,
 				954445B81F786956000C1F5E /* InformationViewModelEducationItem.swift in Sources */,
 				952CBEF31F828FF800DCEFE7 /* NewsTableViewCell.swift in Sources */,
 				953E594E1F77170200418F1F /* EducationTableViewCell.swift in Sources */,
@@ -308,6 +323,7 @@
 				954445B61F786930000C1F5E /* InformationViewModelCarierItem.swift in Sources */,
 				953E59491F76FF0000418F1F /* CarierTableViewCell.swift in Sources */,
 				954445B41F7868F9000C1F5E /* InformationViewModelContactsItem.swift in Sources */,
+				953B047B1F8678F70011F6AD /* DataTransferProtocol.swift in Sources */,
 				95CC0C011F7014A300331F8A /* FollowersTableViewController.swift in Sources */,
 				953E593D1F75510600418F1F /* StatusTableViewCell.swift in Sources */,
 				956B69881F78628E006B6364 /* ViewExtensions.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataTransferProtocol {
     @IBOutlet weak var photoScroll: UIScrollView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var surnameLabel: UILabel!
@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var giftsCount: UIButton!
     @IBOutlet weak var newsTableView: UITableView!
     
+    @IBOutlet weak var tableView: UITableView!
     let navigationBarColor = UIColor.init(red: 89/255.0, green: 125/255.0, blue: 163/255.0, alpha: 1.0)
     let borderColor = UIColor.init(red: 184/255.0, green: 184/255.0, blue:184/255.0, alpha: 1.0).cgColor
     let surnameArray = ["Ivanov","Petrov","Sidorov"]
@@ -47,7 +48,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let docsConst = "docs"
     let randomConst : UInt32 = 100
     let infoSequeIdentifier = "infoIdentifier"
+    let noteSequeIdentifier = "noteSequeIdentifier"
     let radiusRoundCorner: CGFloat = 50
+    var notesArray: [String] = []
+    let noteCellIdentifier = "noteIdentifier"
+    
+    var buttonPressedDelegate : ButtonPressedProtocol?
     
     
     override func viewDidLoad() {
@@ -65,20 +71,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         randomInInfoScroll()
         setNavigationBarColorAndFont()
         avatar.roundCorners([.topLeft, .topRight, .bottomLeft, .bottomRight], radius: radiusRoundCorner)
+        cellRegistration()
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func moreInfoButtonPressed(_ sender: Any) {
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let editAction = UIAlertAction(title: "Редактировать профиль", style: .default, handler: nil)
+        
+        let copyAction = UIAlertAction(title: "Скопировать ссылку", style: .default, handler: nil)
+        
+        let shareAction = UIAlertAction(title: "Поделиться...", style: .default, handler: nil)
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        optionMenu.addAction(editAction)
+        optionMenu.addAction(copyAction)
+        optionMenu.addAction(shareAction)
+        optionMenu.addAction(cancelAction)
+        
+        present(optionMenu, animated: true, completion: nil)
+        
     }
     
     func setNavigationBarColorAndFont(){
-        self.navigationController?.navigationBar.barTintColor = navigationBarColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = navigationBarColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
 
+    //MARK: Random fill arrays
+    
     func randomName() {
         
         nameLabel.text = nameArray[Int(arc4random_uniform(UInt32(nameArray.count)))]
@@ -116,7 +141,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         
         let friends = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(friendsConst)",
-                                                         attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
+            attributes: [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.paragraphStyle:paragraphStyle])
         friendsCount.setAttributedTitle(friends, for: .normal)
         
         let followers = NSAttributedString(string: "\(arc4random_uniform(randomConst)) \(followersConst)",
@@ -149,10 +174,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
-//    func imageCorners(with image: UIImageView) {
-//        image.layer.cornerRadius = avatarCornersMultiply
-//        image.roundCorners([.topLeft, .topRight, .bottomLeft, .bottomRight], radius: radiudRoundCorner)
-//    }
+    //MARK: Register custom cell
+    
+    func cellRegistration() {
+        
+        let newsCellNib = UINib(nibName: "NewsTableViewCell", bundle: nil)
+        tableView.register(newsCellNib, forCellReuseIdentifier: noteCellIdentifier)
+        
+    }
+    
+    //MARK: Button and Scroll Borders
     
     func bottomAboutScrollBorder() {
         
@@ -200,18 +231,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    //MARK: DataTransferProtocol
+    
+    func didPressDone(with note: String) {
+        notesArray.append(note)
+        tableView.reloadData()
+    }
+    
+    //MARK: TableView Methods
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return notesArray.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: noteCellIdentifier) as! NewsTableViewCell
+        
+        cell.prepare(with: notesArray[indexPath.row])
+        
         return cell
     }
     
+    //MARK: Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == infoSequeIdentifier {
@@ -221,6 +268,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             profileVC.age = (ageLabel.text)!
             profileVC.location = (locationLabel.text)!
             profileVC.avatarFrom = avatar.image!
+        }
+        
+        if segue.identifier == noteSequeIdentifier {
+            let controller = segue.destination as! NoteViewController
+            controller.dataTransferDelagete = self
         }
     }
     

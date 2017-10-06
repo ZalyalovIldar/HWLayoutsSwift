@@ -24,6 +24,8 @@ class FollowersTableViewController: UITableViewController {
     let followersAvatarArray: [UIImage] = [UIImage(named: "followerAvatar1")!, UIImage(named: "followerAvatar2")!, UIImage(named: "followerAvatar3")!, UIImage(named: "followerAvatar4")!, UIImage(named: "followerAvatar5")!, UIImage(named: "followerAvatar6")!, UIImage(named: "followerAvatar7")!, UIImage(named: "followerAvatar8")!, UIImage(named: "followerAvatar9")!]
     let onlineArray: [UIImage] = [UIImage(named: "onlineIcon")!, UIImage(named: "phoneOnlineIcon")!, UIImage(named: "offlineIcon")!]
     
+    let followerCellHeight: CGFloat = 48
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +72,6 @@ class FollowersTableViewController: UITableViewController {
      }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
+        return followerCellHeight
     }
 }

@@ -20,5 +20,4 @@ class MoreInfoTableViewCell: UITableViewCell {
         countLabel.sizeToFit()
         
     }
-    
 }
